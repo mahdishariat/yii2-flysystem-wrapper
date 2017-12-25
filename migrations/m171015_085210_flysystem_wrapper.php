@@ -25,8 +25,10 @@ class m171015_085210_flysystem_wrapper extends Migration
             'context' => $this->string(100)->null(),
             'version' => $this->integer()->null(),
             'hash' => $this->string(64)->notNull()->unique(),
-            'uploaded_time' => $this->timestamp(),
-            'uploaded_user_id' => $this->integer(),
+            'created_time' => $this->timestamp(),
+            'created_user_id' => $this->integer(),
+            'modified_time' => $this->timestamp(),
+            'modified_user_id' => $this->integer(),
             'deleted_time' => $this->timestamp(),
         ], $tableOptions);
 
@@ -36,28 +38,25 @@ class m171015_085210_flysystem_wrapper extends Migration
             'metadata' => $this->string(255)->notNull(),
             'value' => $this->string(255)->notNull(),
             'created_time' => $this->timestamp(),
+            'created_user_id' => $this->integer(),
+            'modified_time' => $this->timestamp(),
+            'modified_user_id' => $this->integer(),
             'deleted_time' => $this->timestamp(),
         ], $tableOptions);
 
-        $this->createTable('{{%file_storage}}', [
-            'id' => $this->primaryKey(),
-            'path' => $this->string(255)->notNull()->unique(),
-            'type' => $this->string(15)->notNull(),
-            'contents' => 'LONGBLOB',
-            'size' => $this->integer()->notNull()->defaultValue(0),
-            'mimetype' => $this->string(127),
-            'timestamp' => $this->integer()->notNull()->defaultValue(0),
-            'deleted_time' => $this->timestamp(),
-        ], $tableOptions);
+
+        $this->addForeignKey('fk_file_created_user_id', '{{%file}}', 'created_user_id', '{{%user}}', 'id');
+        $this->addForeignKey('fk_file_modified_user_id', '{{%file}}', 'modified_user_id', '{{%user}}', 'id');
+
+        $this->addForeignKey('fk_file_metadata_created_user_id', '{{%file_metadata}}', 'created_user_id', '{{%user}}', 'id');
+        $this->addForeignKey('fk_file_metadata_modified_user_id', '{{%file_metadata}}', 'modified_user_id', '{{%user}}', 'id');
 
         $this->addForeignKey('fk_file_metadata', '{{%file_metadata}}', 'file_id', '{{%file}}', 'id');
-        $this->addForeignKey('fk_file_uploaded_user_id', '{{%file}}', 'uploaded_user_id', '{{%user}}', 'id');
     }
 
     public function safeDown()
     {
         $this->dropTable('{{%file_metadata}}');
         $this->dropTable('{{%file}}');
-        $this->dropTable('{{%file_storage}}');
     }
 }

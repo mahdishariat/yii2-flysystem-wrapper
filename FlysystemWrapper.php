@@ -1,10 +1,10 @@
 <?php
 
-namespace whc\flysystemwrapper;
+namespace hossein142001\flysystemwrapper;
 
-use whc\flysystemwrapper\models\File;
-use whc\flysystemwrapper\models\FileMetadata;
-use whc\flysystemwrapper\models\FileStorage;
+use hossein142001\flysystemwrapper\models\File;
+use hossein142001\flysystemwrapper\models\FileMetadata;
+use hossein142001\flysystemwrapper\models\FileStorage;
 use Yii;
 use yii\i18n\PhpMessageSource;
 
@@ -36,6 +36,7 @@ class FlysystemWrapper extends \yii\base\Widget
         {
             $filePath = Yii::getAlias($data['path']) . '/' . $file->name;
             $fileContent = file_get_contents($file->tempName);
+
             if(Yii::$app->fs->write($filePath, $fileContent, $config) !== false)
             {
                 $fileModel = new File;
@@ -113,7 +114,7 @@ class FlysystemWrapper extends \yii\base\Widget
      * @param $params
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function searchByParams($params)
+    public static function searchByParams($params)
     {
         // special fields is fields that have exist in file model.
         $specialFields = ['context', 'version'];
