@@ -1,23 +1,23 @@
 {
-    "name": "whc/yii2-flysystem-wrapper",
+    "name": "mahdishariat/yii2-flysystem-wrapper",
     "description": "yii2 flysystem wrapper",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","file","filemanager", "flysystem wrapper", "flysystem"],
     "license": "GPL-3.0",
     "authors": [
         {
-            "name": "ehsan rezaei",
-            "email": "mr.rezaee121@gmail.com"
+            "name": "mahdi shariat",
+            "email": "shariat.mm@gmail.com"
         }
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "integral/flysystem-pdo-adapter": "1.0.*",
+        "whc-projects/flysystem-pdo-adapter": "1.0.*",
         "creocoder/yii2-flysystem": "0.8.*"
     },
     "autoload": {
         "psr-4": {
-            "whc\\flysystemwrapper\\": ""
+            "mahdishariat\\flysystemwrapper\\": ""
         }
     }
 }
