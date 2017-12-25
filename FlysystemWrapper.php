@@ -1,10 +1,10 @@
 <?php
 
-namespace hossein142001\flysystemwrapper;
+namespace mahdishariat\flysystemwrapper;
 
-use hossein142001\flysystemwrapper\models\File;
-use hossein142001\flysystemwrapper\models\FileMetadata;
-use hossein142001\flysystemwrapper\models\FileStorage;
+use mahdishariat\flysystemwrapper\models\File;
+use mahdishariat\flysystemwrapper\models\FileMetadata;
+use mahdishariat\flysystemwrapper\models\FileStorage;
 use Yii;
 use yii\i18n\PhpMessageSource;
 
@@ -36,7 +36,6 @@ class FlysystemWrapper extends \yii\base\Widget
         {
             $filePath = Yii::getAlias($data['path']) . '/' . $file->name;
             $fileContent = file_get_contents($file->tempName);
-
             if(Yii::$app->fs->write($filePath, $fileContent, $config) !== false)
             {
                 $fileModel = new File;
@@ -49,7 +48,7 @@ class FlysystemWrapper extends \yii\base\Widget
                 $fileModel->hash = sha1(uniqid(rand(), TRUE));
                 $fileModel->save();
 
-                if($fileModel->save())
+                if($fileModel->save() && $data['metadata'])
                 {
                     foreach ((array)$data['metadata'] as $metadata => $value)
                     {

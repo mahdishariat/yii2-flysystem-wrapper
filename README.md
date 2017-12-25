@@ -10,20 +10,20 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist hossein142001/yii2-flysystem-wrapper "*"
+php composer.phar require --prefer-dist whc/yii2-flysystem-wrapper "*"
 ```
 
 or add
 
 ```
-"hossein142001/yii2-flysystem-wrapper": "*"
+"whc/yii2-flysystem-wrapper": "*"
 ```
 
 to the require section of your `composer.json` file.
 
 then up migrations
 ```
-php yii migrate/up --migrationPath=vendor/hossein142001/yii2-flysystem-wrapper/migrations
+php yii migrate/up --migrationPath=vendor/whc/yii2-flysystem-wrapper/migrations
 ```
 
 Usage/Features

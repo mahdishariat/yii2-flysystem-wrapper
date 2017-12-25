@@ -1,6 +1,6 @@
 <?php
 
-namespace whc\flysystemwrapper\models;
+namespace mahdishariat\flysystemwrapper\models;
 
 use Yii;
 use yii\db\ActiveRecord;
