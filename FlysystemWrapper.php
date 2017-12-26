@@ -65,7 +65,7 @@ class FlysystemWrapper extends \yii\base\Widget
                 return false;
             }
         }
-        return true;
+        return $fileModel;
     }
 
     /**
